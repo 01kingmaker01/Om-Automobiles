@@ -1,111 +1,106 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS only -->
-     
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <script src="https://kit.fontawesome.com/4bf9a29806.js" crossorigin="anonymous"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/CSS/styles.css">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/4bf9a29806.js"
+      crossorigin="anonymous"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="/CSS/styles.css" />
     <title>Document</title>
-</head>
-<body> 
-  
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <span
+        class="navbar-brand mb-0 h1"
+        style="padding-left: 0.5rem; color: aliceblue"
+        >Close Job Cards</span
+      >
+    </nav>
 
-
-  <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1" style="padding-left: 0.5rem; color: aliceblue;">Close Job Cards</span>
-  </nav>
-
-  <div class="input-group mb-3">
-    <input type="text" id="search-box"  onkeyup="sendData(this)" class="form-control" placeholder="Search By Vehicle Number..">
-  </div>
-   <!-- <input type="text" id="search-box" onkeyup="sendData(this)"> -->
-   <section id="searchResults">
-    
-    <ul class="list-group">
-      <%  closeJobCard.forEach(card=>{   %>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        id="search-box"
+        onkeyup="sendData(this)"
+        class="form-control"
+        placeholder="Search By Vehicle Number.." />
+    </div>
+    <!-- <input type="text" id="search-box" onkeyup="sendData(this)"> -->
+    <section id="searchResults">
+      <ul class="list-group">
+        <% closeJobCard.forEach(card=>{ %>
         <form action="/completeJobCard/<%=card._id%>" method="get">
           <li class="list-group-item">
             <div class="row">
               <div class="col">
-                <h5><%=  card.vehicleNumber %></h5>
-                <p> <%=  card.customerName %></p> 
+                <h5><%= card.vehicleNumber %></h5>
+                <p><%= card.customerName %></p>
               </div>
-              <div class="col" style="text-align: right; padding-top:1rem ;">
+              <div class="col" style="text-align: right; padding-top: 1rem">
                 <button class="btn btn-danger">Genarate Bill</button>
               </div>
             </div>
-            
           </li>
-        </form>  
+        </form>
         <%})%>
-    </ul>
+      </ul>
+    </section>
 
-   </section>
-
-   <script>
-   if(document.getElementById("search-box").value.length == 0)
-    {
-      console.log("hello");
-    }
-
-
-  
-
-     function sendData(e){
-      if(e.value == '' || e.value == undefined)
-      {
-        console.log("Hii");
+    <script>
+      if (document.getElementById("search-box").value.length == 0) {
+        console.log("hello");
       }
 
+      function sendData(e) {
+        if (e.value == "" || e.value == undefined) {
+          console.log("Hii");
+        }
 
-
-      const searchResults = document.getElementById('searchResults');
-      let match = e.value.match(/^[a-zA-Z0-9]*/);
-      let match2 = e.value.match(/\s*/);
-      if(match2[0] == e.value)
-      {
-        searchResults.innerHTML = '';
-        return; 
-      }
-      if(match[0] == e.value)
-      {
-        fetch('getCards',{
-          method:'POST',
-          headers:{'Content-Type' : 'application/json'},
-          body:JSON.stringify({payload:e.value})
-          }).then(res => res.json()).then(data=>{
+        const searchResults = document.getElementById("searchResults");
+        let match = e.value.match(/^[a-zA-Z0-9]*/);
+        let match2 = e.value.match(/\s*/);
+        if (match2[0] == e.value) {
+          searchResults.innerHTML = "";
+          return;
+        }
+        if (match[0] == e.value) {
+          fetch("getCards", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ payload: e.value }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
               let payload = data.payload;
               console.log(payload);
-              searchResults.innerHTML = '';
-              if(payload.length < 1)
-              {
-                searchResults.innerHTML = '<p>No Results Found</p>';
+              searchResults.innerHTML = "";
+              if (payload.length < 1) {
+                searchResults.innerHTML = "<p>No Results Found</p>";
                 return;
               }
-              payload.forEach((item,index)=>{
-                if(index > 0)
-                  searchResults.innerHTML += '</hr>';
-                searchResults.innerHTML += '<p>'+item.vehicleNumber+'</p>';
+              payload.forEach((item, index) => {
+                if (index > 0) searchResults.innerHTML += "</hr>";
+                searchResults.innerHTML += "<p>" + item.vehicleNumber + "</p>";
               });
             });
-            return;
+          return;
+        }
+        searchResults.innerHTML = "";
       }
-      searchResults.innerHTML = '';
-     }
-   </script>
-
-
-  
-
-</body>
-<script>
- 
-</script>
+    </script>
+  </body>
+  <script></script>
 </html>
