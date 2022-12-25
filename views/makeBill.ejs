@@ -1,115 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="/CSS/styles.css">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1" style="padding-left: 0.5rem; color: aliceblue;">Bill</span>
-  </nav>
- <div class="row">
-
-   
-   <div class="col text-left" style="padding-left: 1rem; padding-right:1rem">
-    <div class="receipt-right">
-      <h5><%= card.customerName %> </h5>
-      <p><b>Mobile :</b><%= card.contactNumber %> </p>
-      <!-- <p><b>Email :</b> customer@gmail.com</p> -->
-      <p><b>Car Number :<%= card.vehicleNumber %></b></p>
-    </div>
-  </div>
-   <div class="col text-right" style="padding-left: 1rem; padding-right:1rem">
-     <div class="receipt-right">
-       <h5>Om Automobiles.</h5>
-       <p>+91 9075390454 <i class="fa fa-phone"></i></p>
-       <p>company@gmail.com <i class="fa fa-envelope-o"></i></p>
-       <!-- <p><i class="fa fa-location-arrow"></i></p> -->
-     </div>
-   </div>
- </div>
- 
-  <form action="/completeJobCard/<%=card._id%>" method="post" >
-    <div class="row" style="padding-left: 1rem; padding-right: 1rem;" >
-      <p class="form-label" for="form8Example3">Oil Expense</p>
-      <div class="col">
-        <!-- Name input -->
-        
-        <div class="form-outline">
-          <input placeholder="Description" name="oilDesc" type="text" id="form8Example4" class="form-control" />
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="/CSS/styles.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <span
+        class="navbar-brand mb-0 h1"
+        style="padding-left: 0.5rem; color: aliceblue"
+        >Bill</span
+      >
+    </nav>
+    <div class="row">
+      <div
+        class="col text-left"
+        style="padding-left: 1rem; padding-right: 1rem">
+        <div class="receipt-right">
+          <h5><%= card.customerName %></h5>
+          <p><b>Mobile :</b><%= card.contactNumber %></p>
+          <!-- <p><b>Email :</b> customer@gmail.com</p> -->
+          <p><b>Car Number :<%= card.vehicleNumber %></b></p>
         </div>
       </div>
-      <div class="col">
-        <!-- Email input -->
-        <div class="form-outline">
-          <input placeholder="Price" type="number" name="oilPrice" id="form8Example5" class="form-control" />
-          
+      <div
+        class="col text-right"
+        style="padding-left: 1rem; padding-right: 1rem">
+        <div class="receipt-right">
+          <h5>Om Automobiles.</h5>
+          <p>+91 9075390454 <i class="fa fa-phone"></i></p>
+          <p>company@gmail.com <i class="fa fa-envelope-o"></i></p>
+          <!-- <p><i class="fa fa-location-arrow"></i></p> -->
         </div>
       </div>
-    </div>
-    <div class="row" style="padding-left: 1rem; padding-right: 1rem;" >
-      <p class="form-label" for="form8Example3">Lubricant Expense</p>
-      <div class="col">
-        <!-- Name input -->
-        
-        <div class="form-outline">
-          <input placeholder="Description" name="lubDesc" type="text" id="form8Example4" class="form-control" />
-        </div>
-      </div>
-      <div class="col">
-        <!-- Email input -->
-        <div class="form-outline">
-          <input placeholder="Price" type="number" name="lubPrice" id="form8Example5" class="form-control" />
-          
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-left: 1rem; padding-right: 1rem;" >
-      <p class="form-label" for="form8Example3">Spare Parts</p>
-      <div class="col">
-        <!-- Name input -->
-        
-        <div class="form-outline">
-          <input placeholder="Description" name="partDesc" type="text" id="form8Example4" class="form-control" />
-        </div>
-      </div>
-      <div class="col">
-        <!-- Email input -->
-        <div class="form-outline">
-          <input placeholder="Price" type="number" name="partPrice" id="form8Example5" class="form-control" />
-          
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-left: 1rem; padding-right: 1rem;" >
-      <p class="form-label" for="form8Example3">Labour Charges</p>
-      <div class="col">
-        <!-- Name input -->
-        
-        <div class="form-outline">
-          <input placeholder="Description" name="labourDesc" type="text" id="form8Example4" class="form-control" />
-        </div>
-      </div>
-      <div class="col">
-        <!-- Email input -->
-        <div class="form-outline">
-          <input placeholder="Price" type="number" name="labourPrice" id="form8Example5" class="form-control" />
-          
-        </div>
-      </div>
-    </div>
-    <div class="text-center" style="padding-top:2rem" >
-      <button  type="submit" class="btn btn-dark">Generate Bill</button>
-
     </div>
 
-  </form>
-  
-  
+    <form action="/completeJobCard/<%=card._id%>" method="post">
+      <div class="row" style="padding-left: 1rem; padding-right: 1rem">
+        <p class="form-label" for="form8Example3">Oil Expense</p>
+        <div class="col">
+          <!-- Name input -->
 
-</body>
+          <div class="form-outline">
+            <input
+              placeholder="Description"
+              name="oilDesc"
+              type="text"
+              id="form8Example4"
+              class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Email input -->
+          <div class="form-outline">
+            <input
+              placeholder="Price"
+              type="number"
+              name="oilPrice"
+              id="form8Example5"
+              class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-left: 1rem; padding-right: 1rem">
+        <p class="form-label" for="form8Example3">Lubricant Expense</p>
+        <div class="col">
+          <!-- Name input -->
+
+          <div class="form-outline">
+            <input
+              placeholder="Description"
+              name="lubDesc"
+              type="text"
+              id="form8Example4"
+              class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Email input -->
+          <div class="form-outline">
+            <input
+              placeholder="Price"
+              type="number"
+              name="lubPrice"
+              id="form8Example5"
+              class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-left: 1rem; padding-right: 1rem">
+        <p class="form-label" for="form8Example3">Spare Parts</p>
+        <div class="col">
+          <!-- Name input -->
+
+          <div class="form-outline">
+            <input
+              placeholder="Description"
+              name="partDesc"
+              type="text"
+              id="form8Example4"
+              class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Email input -->
+          <div class="form-outline">
+            <input
+              placeholder="Price"
+              type="number"
+              name="partPrice"
+              id="form8Example5"
+              class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-left: 1rem; padding-right: 1rem">
+        <p class="form-label" for="form8Example3">Labour Charges</p>
+        <div class="col">
+          <!-- Name input -->
+
+          <div class="form-outline">
+            <input
+              placeholder="Description"
+              name="labourDesc"
+              type="text"
+              id="form8Example4"
+              class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <!-- Email input -->
+          <div class="form-outline">
+            <input
+              placeholder="Price"
+              type="number"
+              name="labourPrice"
+              id="form8Example5"
+              class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="padding-top: 2rem">
+        <button type="submit" class="btn btn-dark">Generate Bill</button>
+      </div>
+    </form>
+  </body>
 </html>
