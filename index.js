@@ -9,6 +9,9 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+var cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 //Mongoose
 const uri =
   "mongodb+srv://piyush:piyush@cluster0.so4bq.mongodb.net/garageDB?retryWrites=true&w=majority";
@@ -43,6 +46,11 @@ app.use("/completeJobCard", completeJobCard);
 const closeJobCard = require("./routes/closeJobCard");
 app.use("/closeJobCard", closeJobCard);
 
+//User
+
+const user = require("./routes/user");
+app.use("/user", user);
+
 //search
 
 app.post("/getCards", async function (req, res) {
@@ -67,9 +75,9 @@ app.get("/", function (req, res) {
   res.send("Hello world");
 });
 
-app.get("/report",function(req,res){
+app.get("/report", function (req, res) {
   res.render("report");
-})
+});
 app.listen(PORT, (error) => {
   if (!error)
     console.log(
