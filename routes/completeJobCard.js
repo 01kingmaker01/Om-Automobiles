@@ -5,6 +5,7 @@ const JobCard = require("../models/jobCard");
 const JobBill = require("../models/jobBill");
 const TotalRevenue = require("../models/totalRevenue");
 const { findOne } = require("../models/jobCard");
+const { authenticateJWT } = require("../middleware");
 const app = express();
 app.set("view engine", "ejs");
 
@@ -17,7 +18,7 @@ utc.setMinutes(utc.getMinutes() + 30);
 
 router
   .route("/")
-  .get(async (req, res) => {
+  .get(authenticateJWT, async (req, res) => {
     try {
       //For Search Bar
 
